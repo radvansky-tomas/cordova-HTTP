@@ -2,7 +2,7 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-http"
-  version="1.2.1">
+  version="1.2.2">
 
     <name>SSL Pinning</name>
 
@@ -16,12 +16,13 @@
 
     <dependency id="cordova-plugin-file" version=">=2.0.0" />
 
-    <js-module src="www/cordovaHTTP.js" name="CordovaHttpPlugin">
-        <clobbers target="CordovaHttpPlugin" />
-    </js-module>
-
     <!-- ios -->
     <platform name="ios">
+        <js-module src="www/cordovaHTTP.js" name="CordovaHttpPlugin">
+            <runs/>
+            <clobbers target="CordovaHttpPlugin" />
+        </js-module>
+
         <config-file target="config.xml" parent="/*">
             <feature name="CordovaHttpPlugin">
                 <param name="ios-package" value="CordovaHttpPlugin"/>
@@ -60,6 +61,11 @@
 
     <!--android -->
     <platform name="android">
+        <js-module src="www/cordovaHTTP.js" name="CordovaHttpPlugin">
+            <runs/>
+            <clobbers target="CordovaHttpPlugin" />
+        </js-module>
+
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="CordovaHttpPlugin">
                 <param name="android-package" value="com.synconset.CordovaHttpPlugin"/>
@@ -79,6 +85,14 @@
         <source-file src="src/android/com/synconset/CordovaHTTP/CordovaHttpPlugin.java" target-dir="src/com/synconset" />
         <source-file src="src/android/com/synconset/CordovaHTTP/HttpRequest.java" target-dir="src/com/github/kevinsawicki/http" />
         <source-file src="src/android/com/synconset/CordovaHTTP/TLSSocketFactory.java" target-dir="src/com/github/kevinsawicki/http" />
+    </platform>
+
+    <!--browser -->
+    <platform name="browser">
+        <js-module src="www/browser/cordovaHTTP.js" name="CordovaHttpPlugin">
+            <runs/>
+            <clobbers target="CordovaHttpPlugin" />
+        </js-module>
     </platform>
 
 </plugin>
