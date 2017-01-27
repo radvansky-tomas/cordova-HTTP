@@ -24,13 +24,14 @@ function mergeHeaders(globalHeaders, localHeaders) {
 }
 
 var http = {
+    headers: {},
     get: function(url, params, headers, success, failure) {
         headers = mergeHeaders(this.headers, headers);
         var config = {
             method: 'get',
             url: url,
-            headers:headers,
-            params:params
+            headers: headers,
+            params: params
         };
 
         axios(config)
