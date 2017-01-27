@@ -15,8 +15,6 @@
     </engines>
 
     <dependency id="cordova-plugin-file" version=">=2.0.0" />
-
-    <dependency id="request-promise"/>
     <!-- ios -->
     <platform name="ios">
         <js-module src="www/cordovaHTTP.js" name="CordovaHttpPlugin">
