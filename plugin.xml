@@ -83,7 +83,7 @@
 
     <!--browser -->
     <platform name="browser">
-        <js-module src="src/browser/cordovaHTTP.js" name="CordovaHttpPlugin">
+        <js-module src="src/browser/cordovaHTTPPlugin.js" name="CordovaHttpPlugin">
             <runs />
         </js-module>
     </platform>
