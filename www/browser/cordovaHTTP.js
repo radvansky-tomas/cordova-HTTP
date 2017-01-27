@@ -4,7 +4,6 @@
  * An HTTP Plugin for PhoneGap.
  */
 
-
 // Thanks Mozilla: https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_.22Unicode_Problem.22
 function b64EncodeUnicode(str) {
     return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
@@ -25,17 +24,20 @@ function mergeHeaders(globalHeaders, localHeaders) {
 }
 
 var http = {
-    headers: {},
-    sslPinning: false,
     get: function(url, params, headers, success, failure) {
         headers = mergeHeaders(this.headers, headers);
-        axios.get('url', params)
+        var config = {
+            method: 'get',
+            url: url,
+            headers:headers,
+            params:params
+        };
+
+        axios(config)
             .then(function (response) {
-                console.log(response);
                 success(response);
             })
             .catch(function (error) {
-                console.log(error);
                 failure(error);
             });
     }
