@@ -81,11 +81,4 @@
         <source-file src="src/android/com/synconset/CordovaHTTP/TLSSocketFactory.java" target-dir="src/com/github/kevinsawicki/http" />
     </platform>
 
-    <!--browser -->
-    <platform name="browser">
-        <js-module src="src/browser/cordovaHTTPPlugin.js" name="CordovaHttpPlugin">
-            <runs />
-        </js-module>
-    </platform>
-
 </plugin>
