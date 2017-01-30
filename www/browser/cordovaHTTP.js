@@ -25,6 +25,23 @@ function mergeHeaders(globalHeaders, localHeaders) {
 
 var http = {
     headers: {},
+    post: function (url, params, headers, success, failure) {
+        headers = mergeHeaders(this.headers, headers);
+        var config = {
+            method: 'post',
+            url: url,
+            headers: headers,
+            data: params
+        };
+
+        return axios(config)
+            .then(function (response) {
+                success(response);
+            })
+            .catch(function (error) {
+                failure(error);
+            });
+    },
     get: function(url, params, headers, success, failure) {
         headers = mergeHeaders(this.headers, headers);
         var config = {
@@ -34,12 +51,31 @@ var http = {
             params: params
         };
 
-        axios(config)
+        return axios(config)
             .then(function (response) {
                 success(response);
             })
             .catch(function (error) {
                 failure(error);
+            });
+    },
+    uploadFile: function (url, params, headers, filePath, name, success, failure) {
+        headers = mergeHeaders(this.headers, headers);
+        var data = params;
+        data.file = filePath;
+
+        var config = {
+            onUploadProgress: function(progressEvent) {
+                var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+                console.log('Upload - ' + percentCompleted + '%');
+            }
+        };
+        return axios.put(url, data, config)
+            .then(function (res) {
+                success(res);
+            })
+            .catch(function (err) {
+                failure(err);
             });
     }
 };
